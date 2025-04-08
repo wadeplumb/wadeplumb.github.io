@@ -1,0 +1,51 @@
+body {
+  font-family: "Sixtyfour Convergence";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+  margin: 0;
+  flex-direction: column;
+  background-color: rgb(8, 8, 8);
+  overflow-x: hidden;
+  /* overflow-y: scroll; */
+}
+canvas {
+  border: 1px solid #ccc;
+}
+.home {
+  height: 20px;
+  padding-left: 40px;
+}
+.music {
+  order: 3;
+  background-color: rgb(13, 13, 77);
+  color: white;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  flex-direction: column;
+}
+header {
+  /* position: relative; */
+  /* order: 0; */
+  /* height: 200px; */
+  width: 100vw;
+  /* padding: 20px; */
+  margin-bottom: 20px;
+}
+.game {
+  position: relative;
+  margin: 20px;
+  /* order: 2; */
+}
+script {
+  position: relative;
+}
+@font-face {
+  font-family: "Sixtyfour Convergence";
+  src: url("SixtyfourConvergence-Regular-VariableFont_BLED,SCAN,XELA,YELA.ttf")
+    format("truetype");
+}
