@@ -32,75 +32,15 @@
     <!-- game wrapper -->
     <div class="game">
       <script>
-        var direction = 0; // Declare globally
-        let touchX = null; // Variable to store the X position of the touch
         window.onload = function () {
           var backgroundMusic = document.getElementById("background-music");
           backgroundMusic.play();
-          document.addEventListener("touchstart", handleTouchStart, {
-            passive: false,
-          });
-          document.addEventListener("touchmove", handleTouchMove, {
-            passive: false,
-          });
-          document.addEventListener("touchend", handleTouchEnd, {
-            passive: false,
-          });
         };
-        document.addEventListener(
-          "touchstart",
-          (event) => {
-            if (event.touches.length > 1) {
-              return; // Allow multi-touch gestures
-            }
-            event.preventDefault(); // Prevent default touch behavior
-          },
-          { passive: false }
-        );
-
-        document.addEventListener(
-          "touchmove",
-          (event) => {
-            if (event.touches.length > 1) {
-              return; // Allow multi-touch gestures
-            }
-            event.preventDefault(); // Prevent default touch behavior
-          },
-          { passive: false }
-        );
-
         function resetSound() {
           var backgroundMusic = document.getElementById("background-music");
           backgroundMusic.pause();
           backgroundMusic.currentTime = 0;
           backgroundMusic.play();
-        }
-
-        // Add touch event listeners
-
-        function handleTouchStart(event) {
-          event.preventDefault(); // Prevent default behavior
-          console.log("Touch start:", event.touches[0].clientX);
-          touchX = event.touches[0].clientX; // Get the initial touch position
-        }
-
-        function handleTouchMove(event) {
-          event.preventDefault(); // Prevent default behavior
-          const currentTouchX = event.touches[0].clientX;
-
-          // Determine the direction based on touch movement
-          if (currentTouchX > touchX) {
-            direction = 1; // Move right
-          } else if (currentTouchX < touchX) {
-            direction = 2; // Move left
-          }
-
-          touchX = currentTouchX; // Update the touch position
-        }
-
-        function handleTouchEnd() {
-          event.preventDefault(); // Prevent default behavior
-          direction = 0; // Stop moving when the touch ends
         }
 
         // set up canvas and imprtant variables
@@ -444,4 +384,3 @@
     </div>
   </body>
 </html>
-```
