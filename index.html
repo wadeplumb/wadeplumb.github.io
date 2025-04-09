@@ -45,12 +45,13 @@
 
         // set up canvas and imprtant variables
         function setup() {
-          createCanvas(800, 800);
+          canvas = createCanvas(800, 800);
           background(102, 98, 98);
           fill(255, 255, 255);
           text(score, 50, 50);
           score = 0;
           var dist = 1;
+          canvas.elt.focus();
         }
         // draw a spike based off of X and Y
         function createSpike(x, y) {
