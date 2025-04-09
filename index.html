@@ -43,6 +43,34 @@
           backgroundMusic.play();
         }
 
+        let touchX = null; // Variable to store the X position of the touch
+
+        // Add touch event listeners
+        document.addEventListener("touchstart", handleTouchStart);
+        document.addEventListener("touchmove", handleTouchMove);
+        // document.addEventListener("touchend", handleTouchEnd);
+
+        function handleTouchStart(event) {
+          touchX = event.touches[0].clientX; // Get the initial touch position
+        }
+
+        function handleTouchMove(event) {
+          const currentTouchX = event.touches[0].clientX;
+
+          // Determine the direction based on touch movement
+          if (currentTouchX > touchX) {
+            direction = 1; // Move right
+          } else if (currentTouchX < touchX) {
+            direction = 2; // Move left
+          }
+
+          touchX = currentTouchX; // Update the touch position
+        }
+
+        // function handleTouchEnd() {
+        //   direction = 0; // Stop moving when the touch ends
+        // }
+
         // set up canvas and imprtant variables
         function setup() {
           createCanvas(800, 800);
