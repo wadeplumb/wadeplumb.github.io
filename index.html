@@ -263,12 +263,6 @@
           text(score, 50, 50);
           // keyboard inputs\
 
-          if (mouseX > 400) {
-            direction = 1;
-          } else if (mouseX < 400) {
-            direction = 2;
-          }
-
           if (keyIsPressed && (key === "ArrowRight" || key === "d")) {
             direction = 1;
           } else if (keyIsPressed && (key === "ArrowLeft" || key === "a")) {
@@ -361,6 +355,12 @@
         }
         // restart game with play button
         function mouseClicked() {
+          if (mouseX > 400) {
+            direction = 1;
+          } else if (mouseX < 400) {
+            direction = 2;
+          }
+
           if (AAA <= 30) {
             resetSound();
             wimgY = -19200;
