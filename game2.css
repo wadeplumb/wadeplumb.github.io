@@ -55,6 +55,12 @@ body {
   width: 100%;
   height: 100%;
 }
+body,
+html {
+  margin: 0;
+  padding: 0;
+  touch-action: none; /* Disable default touch gestures */
+}
 @font-face {
   font-family: "Sixtyfour Convergence";
   src: url("SixtyfourConvergence-Regular-VariableFont_BLED,SCAN,XELA,YELA.ttf")
