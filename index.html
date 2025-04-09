@@ -47,6 +47,22 @@
             passive: false,
           });
         };
+        document.addEventListener(
+          "touchstart",
+          (event) => {
+            event.preventDefault(); // Prevent default touch behavior
+          },
+          { passive: false }
+        );
+
+        document.addEventListener(
+          "touchmove",
+          (event) => {
+            event.preventDefault(); // Prevent default touch behavior
+          },
+          { passive: false }
+        );
+
         function resetSound() {
           var backgroundMusic = document.getElementById("background-music");
           backgroundMusic.pause();
