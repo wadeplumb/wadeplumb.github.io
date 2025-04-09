@@ -61,6 +61,13 @@ html {
   padding: 0;
   touch-action: none; /* Disable default touch gestures */
 }
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent scrolling */
+  touch-action: none; /* Disable default touch gestures */
+}
 @font-face {
   font-family: "Sixtyfour Convergence";
   src: url("SixtyfourConvergence-Regular-VariableFont_BLED,SCAN,XELA,YELA.ttf")
