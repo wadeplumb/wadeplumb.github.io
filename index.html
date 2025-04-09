@@ -9,7 +9,10 @@
 
     <!-- set up html veiw -->
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
     <title>Car Game</title>
     <!-- import p5.js librairy -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
@@ -51,6 +54,7 @@
         document.addEventListener("touchend", handleTouchEnd);
 
         function handleTouchStart(event) {
+          console.log("Touch start:", event.touches[0].clientX);
           touchX = event.touches[0].clientX; // Get the initial touch position
         }
 
