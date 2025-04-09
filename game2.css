@@ -44,6 +44,12 @@ header {
 script {
   position: relative;
 }
+body {
+  touch-action: manipulation; /* Allow touch gestures */
+}
+.game {
+  touch-action: manipulation; /* Allow touch gestures */
+}
 @font-face {
   font-family: "Sixtyfour Convergence";
   src: url("SixtyfourConvergence-Regular-VariableFont_BLED,SCAN,XELA,YELA.ttf")
