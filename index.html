@@ -35,6 +35,11 @@
         window.onload = function () {
           var backgroundMusic = document.getElementById("background-music");
           backgroundMusic.play();
+          const gameContainer = document.querySelector(".game");
+
+          gameContainer.addEventListener("touchstart", handleTouchStart);
+          gameContainer.addEventListener("touchmove", handleTouchMove);
+          gameContainer.addEventListener("touchend", handleTouchEnd);
         };
         function resetSound() {
           var backgroundMusic = document.getElementById("background-music");
@@ -46,11 +51,6 @@
         let touchX = null; // Variable to store the X position of the touch
 
         // Add touch event listeners
-        const gameContainer = document.querySelector(".game");
-
-        gameContainer.addEventListener("touchstart", handleTouchStart);
-        gameContainer.addEventListener("touchmove", handleTouchMove);
-        gameContainer.addEventListener("touchend", handleTouchEnd);
 
         function handleTouchStart(event) {
           event.preventDefault();

@@ -49,6 +49,11 @@ body {
 }
 .game {
   touch-action: manipulation; /* Allow touch gestures */
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
+  width: 800px;
+  height: 800px;
 }
 @font-face {
   font-family: "Sixtyfour Convergence";
