@@ -40,6 +40,11 @@ header {
   position: relative;
   margin: 20px;
   /* order: 2; */
+  z-index: 1;
+  pointer-events: auto;
+  width: 100%;
+  height: 100%;
+  touch-action: none; /* Ensure the game container captures touch events */
 }
 script {
   position: relative;
@@ -47,25 +52,11 @@ script {
 body {
   touch-action: manipulation; /* Allow touch gestures */
 }
-.game {
-  touch-action: manipulation; /* Allow touch gestures */
-  position: relative;
-  z-index: 1;
-  pointer-events: auto;
-  width: 100%;
-  height: 100%;
-}
 body,
 html {
   margin: 0;
   padding: 0;
-  touch-action: none; /* Disable default touch gestures */
-}
-body,
-html {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden; /* Prevent scrolling */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
   touch-action: none; /* Disable default touch gestures */
 }
 @font-face {
