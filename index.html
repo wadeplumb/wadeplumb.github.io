@@ -35,11 +35,9 @@
         window.onload = function () {
           var backgroundMusic = document.getElementById("background-music");
           backgroundMusic.play();
-          const gameContainer = document.querySelector(".game");
-
-          gameContainer.addEventListener("touchstart", handleTouchStart);
-          gameContainer.addEventListener("touchmove", handleTouchMove);
-          gameContainer.addEventListener("touchend", handleTouchEnd);
+          document.addEventListener("touchstart", handleTouchStart);
+          document.addEventListener("touchmove", handleTouchMove);
+          document.addEventListener("touchend", handleTouchEnd);
         };
         function resetSound() {
           var backgroundMusic = document.getElementById("background-music");
@@ -53,7 +51,6 @@
         // Add touch event listeners
 
         function handleTouchStart(event) {
-          event.preventDefault();
           console.log("Touch start:", event.touches[0].clientX);
           touchX = event.touches[0].clientX; // Get the initial touch position
         }
@@ -73,7 +70,6 @@
         }
 
         function handleTouchEnd() {
-          event.preventDefault();
           direction = 0; // Stop moving when the touch ends
         }
 
