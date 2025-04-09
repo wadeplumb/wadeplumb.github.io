@@ -32,12 +32,20 @@
     <!-- game wrapper -->
     <div class="game">
       <script>
+        var direction = 0; // Declare globally
+        let touchX = null; // Variable to store the X position of the touch
         window.onload = function () {
           var backgroundMusic = document.getElementById("background-music");
           backgroundMusic.play();
-          document.addEventListener("touchstart", handleTouchStart);
-          document.addEventListener("touchmove", handleTouchMove);
-          document.addEventListener("touchend", handleTouchEnd);
+          document.addEventListener("touchstart", handleTouchStart, {
+            passive: false,
+          });
+          document.addEventListener("touchmove", handleTouchMove, {
+            passive: false,
+          });
+          document.addEventListener("touchend", handleTouchEnd, {
+            passive: false,
+          });
         };
         function resetSound() {
           var backgroundMusic = document.getElementById("background-music");
@@ -45,8 +53,6 @@
           backgroundMusic.currentTime = 0;
           backgroundMusic.play();
         }
-
-        let touchX = null; // Variable to store the X position of the touch
 
         // Add touch event listeners
 
