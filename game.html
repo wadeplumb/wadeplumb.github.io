@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- <link rel="stylesheet" href="main-styles.css" /> -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Block Game</title>
+    <style>
+      /* set up canvas and body */
+      canvas {
+        border: 1px solid #ccc;
+      }
+      header {
+        /* position: relative; */
+        /* order: 0;
+        height: 200px; */
+        width: 100vw;
+        /* padding: 20px; */
+        margin-bottom: 20px;
+      }
+      .home{
+        height: 20px;
+      }
+      .home a{
+        padding-left: 5px;
+      }
+      body {
+        font-family:sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* height: 100vh; */
+        margin: 0;
+        flex-direction: column;
+        background-color: rgb(92, 92, 92);
+        overflow-x: hidden;
+        overflow-y: scroll;
+      }
+      .music {
+        order: 3;
+        background-color: rgb(13, 13, 77);
+        color: white;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        flex-direction: column;
+      }
+      canvas {
+        border: 1px solid #ccc;
+      }
+      /* canvas {
+        background-image:'j';
+      } */
+      .game {
+        position: relative;
+        margin: 20px;
+        order: 2;
+      }
+      script {
+        position: relative;
+      }
+    </style>
+    <audio id="background-music" src="running.mp3" loop></audio>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  </head>
+  <body>
+    <div class="home"><a href="index.html">Home</a></div>
+    <header class="minhead">
+      <div style="font-family:sans-serif;" class="header">
+        Block
+      </div>
+      <div
+        style="font-family: sans-serif"
+        class="header-explanation"
+      >
+        the simple Block game
+      </div>
+    </header>
+    <script class="game">
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+                event.preventDefault();
+            }
+        });
+
+
+      window.onload = function () {
+        var backgroundMusic = document.getElementById("background-music");
+        backgroundMusic.play();
+      };
+      function resetSound() {
+        var backgroundMusic = document.getElementById("background-music");
+        backgroundMusic.pause();
+        backgroundMusic.currentTime = 0;
+        backgroundMusic.play();
+      }
+      function preload() {
+        resetSound();
+      }
+      var col = 255;
+      var p = 0;
+      var x = 40;
+      var y = 40;
+      var x2 = 720;
+      var y2 = 720;
+      var T = 1;
+      var s = 1.5;
+      var d, f, z, q, e, AAA ,dist2;
+      var move = 1;
+      var move2 = 1;
+      var dir = 2;
+      var p2 = 0;
+      var go1 = 0;
+      var go2 = 0;
+
+      function setup() {
+        createCanvas(800, 800);
+        d = random(0, 760);
+        f = random(0, 760);
+        z = d;
+        q = f;
+      }
+
+      function car(x, y,R,G,B) {
+        fill(R, G, B);
+        rect(x, y, 40, 40);
+      }
+
+      function cor(x, y, c, o) {
+        fill(c, o, o);
+        rect(x, y, 40, 40);
+        fill(o, o, c);
+        rect(x + 5, y + 5, 30, 30);
+        fill(c, o, c);
+        rect(x + 10, y + 10, 20, 20);
+      }
+
+      function PLAY() {
+        fill(247, 244, 244);
+        // textSize(20);
+        // text("SCORE:" + p, 353, 240);
+        fill(col, col, col);
+        triangle(170 + 200, 280 - 20, 230 + 200, 300 - 20, 170 + 200, 330 - 20);
+      }
+
+      function draw() {
+        // background(235, 221, 221);
+        background(0, 100, 150);
+        AAA = dist(mouseX, mouseY, 400, 300);
+        col = AAA <= 30 ? 138 : 255;
+
+        textSize(12);
+        e = dist(d + 20, f + 20, x + 20, y + 20);
+        dist2 = dist(d + 20, f + 20, x2 + 20, y2 + 20);
+        textSize(20);
+
+        if (keyIsPressed) {
+          if ( key === "w") T = 4;
+          if ( key === "s") T = 3;
+          if ( key === "a") T = 2;
+          if ( key === "d") T = 1;
+          if (key === "ArrowUp") dir = 4;
+          if (key === "ArrowDown") dir = 3;
+          if (key === "ArrowLeft") dir = 2;
+          if (key === "ArrowRight") dir = 1;
+      //     if(key === 'z'){
+      //   x = 200;
+      //   y = 200;
+      //   move = 1;
+      //   T = 1;
+      // }
+      // if(key === 'y'){
+      //   x = 200;
+      //   y = 200;
+      //   move = 1;
+      //   T = 1;
+      // }
+        }
+        if (move === 1) {
+          if (T === 1) x += s;
+          if (T === 2) x -= s;
+          if (T === 3) y += s;
+          if (T === 4) y -= s;
+        }
+        if (move2 === 1) {
+          if (dir === 1) x2 += s;
+          if (dir === 2) x2-= s;
+          if (dir === 3) y2 += s;
+          if (dir === 4) y2 -= s;
+        }
+
+        cor(d, f, x, y);
+        car(x, y,255,0,0);
+        car(x2,y2,0,255,0)
+
+        if (e <= 40) {
+          z = d;
+          q = f;
+          f = random(0, 760);
+          d = random(0, 760);
+          p += 1;
+          s += 0.5;
+        }
+        if (dist2 <= 40) {
+          z = d;
+          q = f;
+          f = random(0, 760);
+          d = random(0, 760);
+          p2 += 1;
+          s += 0.5;
+        }
+        fill(255,0,0);
+        text(p, 345, 20);
+        fill(0,255,0);
+        text(p2, 445, 20);
+
+        if (x > 760 || x < -3 || y > 760 || y < 0) {
+          move = 0;
+          x = -800;
+          textSize(20);
+          fill(255, 0, 0);
+          text("RED GAME OVER", 20, 40);
+          go1 = 1;
+        }
+        if (x2 > 760 || x2 < -3 || y2 > 760 || y2 < 0) {
+          move2 = 0;
+          x2 = -800;
+          textSize(20);
+          fill(0, 255, 0);
+          text("GREEN GAME OVER", 585, 40);
+          go2 = 1;
+        }
+        if (go1 === 1 && go2 === 1) {
+          fill(240, 235, 235);
+          PLAY();
+          textSize(50);
+          fill(250, 250, 250);
+          text("GAME OVER", 240, 200);
+        }
+      }
+      function mouseClicked() {
+        if (AAA <= 30) {
+          resetSound();
+          p = 0;
+          p2 = 0;
+          x = 20;
+          y = 20;
+          x2 = 720;
+          y2 = 720;
+          T = 1;
+          dir = 2;
+          s = 1.5;
+          move = 1;
+          move2 = 1;
+          go1 = 0;
+          go2 = 0;
+          f = random(0, 760);
+          d = random(0, 760);
+        }
+      }
+    </script>
+        <div class="music">
+          Contains music ©2023 Retro Indie Josh (https://retroindiejosh.itch.io)<br />
+          Licensed under Creative Commons Attribution 4.0 International
+          <div class="copyright">
+            <p>©copyright 2025 WadePlumb | All rights reserved.</p>
+          </div>
+  </body>
+</html>
