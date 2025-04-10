@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- import exteral styles -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- <link rel="stylesheet" href="main-styles.css" /> -->
+    <link rel="stylesheet" href="game2.css" />
+    <!-- <link rel="script" href="game2.js" /> -->
+
+    <!-- set up html veiw -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Car Game</title>
+    <!-- import p5.js librairy -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  </head>
+  <body>
+    <audio id="background-music" src="lights-out.mp3" loop></audio>
+    <!-- header -->
+    <div class="home"><a href="index.html">Home</a></div>
+    <header class="minhead">
+      <div style="font-family: 'Sixtyfour Convergence'" class="header">
+        Spike
+      </div>
+      <div
+        style="font-family: 'Sixtyfour Convergence'"
+        class="header-explanation"
+      >
+        the simple car game
+      </div>
+    </header>
+    <!-- game wrapper -->
+    <div class="game">
+      <script>
+        window.onload = function () {
+          var backgroundMusic = document.getElementById("background-music");
+          backgroundMusic.play();
+        };
+        function resetSound() {
+          var backgroundMusic = document.getElementById("background-music");
+          backgroundMusic.pause();
+          backgroundMusic.currentTime = 0;
+          backgroundMusic.play();
+        }
+
+        // set up canvas and imprtant variables
+        function setup() {
+          createCanvas(800, 800);
+          background(102, 98, 98);
+          fill(255, 255, 255);
+          text(score, 50, 50);
+          score = 0;
+          var dist = 1;
+        }
+        // draw a spike based off of X and Y
+        function createSpike(x, y) {
+          fill(156, 150, 150);
+          quad(
+            x - 90,
+            y - 180,
+            x - 120,
+            y - 120,
+            x - 80,
+            y - 120,
+            x - 90,
+            y - 180
+          );
+          quad(
+            x - 90,
+            y - 180,
+            x - 120,
+            y - 120,
+            x - 110,
+            y - 170,
+            x - 90,
+            y - 180
+          );
+        }
+        // draw a car based on X
+        function createCar(x, R, G, B) {
+          fill(255, 0, 0);
+          fill(R, G, B);
+          rect(x, 200 + 200, 60, 106);
+          fill(255, 255, 255);
+          rect(x + 5, 229 + 200, 60, 53);
+          fill(R, G, B);
+          quad(x, 200 + 200, x - 5, 210 + 200, x - 5, 316 + 200, x, 306 + 200);
+          fill(255, 255, 255);
+          quad(
+            x + 5,
+            229 + 200,
+            x - 5 + 5,
+            210 + 29 + 200,
+            x - 5 + 5,
+            210 + 106 - 24 + 200,
+            x + 5,
+            306 - 24 + 200
+          );
+          quad(
+            x + 5 + 60,
+            229 + 53 + 200,
+            x - 5 + 5 + 60,
+            210 + 29 + 53 + 200,
+            x - 5 + 5 + 60,
+            210 + 106 - 24 + 200,
+            x + 5 + 60,
+            306 - 24 + 200
+          );
+          fill(255, 0, 0);
+          fill(R, G, B);
+          quad(
+            x + 60,
+            200 + 106 + 200,
+            x - 5 + 60,
+            210 + 106 + 200,
+            x - 5,
+            210 + 106 + 200,
+            x,
+            306 + 200
+          );
+          fill(R, G, B);
+          quad(
+            x,
+            200 + 200,
+            x - 5,
+            210 + 200,
+            x - 5,
+            210 + 106 + 200,
+            x,
+            306 + 200
+          );
+          fill(13, 12, 12);
+          ellipse(x - 5, 229 + 200, 6, 20);
+          ellipse(x - 5, 289 + 200, 6, 20);
+          fill(166, 163, 163);
+          ellipse(x - 5, 229 + 200, 3, 10);
+          ellipse(x - 5, 289 + 200, 3, 10);
+        }
+        // coin creating function
+        function createCoin(cx, cy) {
+          fill(255, 255, 0);
+          ellipse(cx, cy, 45, 45);
+          ellipse(cx + 3, cy - 4, 45, 45);
+          fill(220, 220, 0);
+          rect(cx - 1, cy - 20, 10, 30);
+        }
+        // game over screen
+        function PLAY(col, doged) {
+          fill(30, 30, 30);
+          textSize(20);
+          text("SCORE:" + doged, 353, 240);
+          fill(col, col, col);
+          triangle(
+            170 + 200,
+            280 - 20,
+            230 + 200,
+            300 - 20,
+            170 + 200,
+            330 - 20
+          );
+          textSize(50);
+          fill(0, 0, 0);
+          text("GAME OVER", 240, 200);
+        }
+        // set random and and car initial position
+        const random = () => Math.random() * 880 + 20;
+        var x = 400;
+        // create spike objects
+        const spikes = [
+          {
+            x: random(),
+            y: 100,
+            width: 20,
+            height: 20,
+          },
+          {
+            x: random(),
+            y: 200,
+            width: 20,
+            height: 20,
+          },
+          {
+            x: random(),
+            y: 300,
+            width: 20,
+            height: 20,
+          },
+          {
+            x: random(),
+            y: 400,
+            width: 20,
+            height: 20,
+          },
+        ];
+        const coins = [
+          {
+            x: random(),
+            y: 70,
+            width: 20,
+            height: 20,
+          },
+        ];
+        // set initlal spikespeed
+        var spikspeed = 3;
+
+        // create car object
+        const car = {
+          left: x - 5,
+          right: x + 60,
+          top: 550,
+          bottom: 316 + 200 + 100 + 50,
+        };
+        // set initial vareables
+        var direction = 0;
+        var AAA = dist(mouseX, mouseY, 400, 300);
+        var play1 = 0;
+        var score = 0;
+        var color = 0;
+        var red = 255;
+        var green = 0;
+        var blue = 0;
+        var distance = 1;
+        var wimgY = -2000;
+        var go = 100;
+        var hello = 0;
+
+        function preload() {
+          // Load the image from the local directory
+          img = loadImage("Untitled2.png");
+          var imgY = -200;
+          wimgY = -19200;
+          x = 400;
+          spikspeed = 2;
+          direction = 0;
+          score = 0;
+          resetSound();
+        }
+        // main loop
+        function draw() {
+          // distance between mouse and play button
+          AAA = dist(mouseX, mouseY, 400, 300);
+          if (go === 100) {
+            wimgY = -1000;
+            go = 0;
+          }
+          // set background
+          background(102, 98, 98);
+          image(img, 0, wimgY, 800, 20000);
+          // if finished
+          if (wimgY > 0) {
+            if (x > -200) {
+              textSize(50);
+              fill(255, 255, 255);
+              text("BONUS!", 20, 150);
+            }
+            wimgY += spikspeed;
+          } else {
+            wimgY += spikspeed;
+          }
+          // display score
+          fill(255, 255, 255);
+          textSize(50);
+          text(score, 50, 50);
+          // keyboard inputs
+          if (keyIsPressed && (key === "ArrowRight" || key === "d")) {
+            direction = 1;
+          } else if (keyIsPressed && (key === "ArrowLeft" || key === "a")) {
+            direction = 2;
+          }
+          if (direction === 1 && x + 65 < 800 && x + 65 > -300) {
+            x += 7;
+          }
+          if (direction === 2 && x > 0) {
+            x -= 7;
+          }
+          // reseting cars left and right
+          car.left = x - 5;
+          car.right = x + 60;
+
+          spikes.forEach((spike) => {
+            // increase spikespeed
+            spike.y += spikspeed;
+            // respawn spikes with new position and increase score
+            if (spike.y > 900) {
+              spike.y = 100;
+              if (spikspeed !== 10) {
+                spikspeed += 0.5;
+              }
+
+              spike.x = Math.random() * 880 + 20;
+              if (x > -200) {
+                score++;
+              }
+            }
+            // change color if hovering over button
+            if (AAA <= 30) {
+              color = 50;
+            } else {
+              color = 150;
+            }
+            if (x <= -200) {
+              PLAY(color, score);
+            }
+            // colition detection
+            if (spike.y + spike.height >= car.top && spike.y <= car.bottom) {
+              if (
+                spike.x + spike.width / 2 - 7 >= car.left + 87 &&
+                spike.x - spike.width * 2 <= car.right + 81
+              ) {
+                // if colition hapens
+                console.log(
+                  "collision",
+                  car.left,
+                  car.right,
+                  spike.y,
+                  spike.x,
+                  car.right - car.left
+                );
+                fill(240, 235, 235);
+                x = -400;
+              }
+            }
+            //Draw spikes at spicific X and Y points
+            createSpike(spike.x, spike.y);
+          });
+          coins.forEach((coin) => {
+            // seting coin speed
+            coin.y += spikspeed;
+            // respawning coin at top
+            if (coin.y > 900) {
+              coin.y = 0;
+              coin.x = Math.random() * 880 + 20;
+            }
+            // if coliton happens
+            if (
+              coin.y + coin.height + 140 >= car.top &&
+              coin.y + 140 <= car.bottom
+            ) {
+              if (
+                coin.x - 10 + coin.width >= car.left &&
+                coin.x + 10 - coin.width <= car.right
+              ) {
+                fill(240, 235, 235);
+                score += 50;
+                coin.x = 1800;
+              }
+            }
+            // draw coin at coin.X and coin.Y
+            createCoin(coin.x, coin.y);
+          });
+
+          // draw car at X
+          createCar(x, red, green, blue);
+        }
+        // restart game with play button
+        function mouseClicked() {
+          if (AAA <= 30) {
+            resetSound();
+            wimgY = -19200;
+            x = 400;
+            spikspeed = 2;
+            direction = 0;
+            score = 0;
+            red = Math.random() * 255;
+            green = Math.random() * 255;
+            blue = Math.random() * 255;
+            spikes.forEach((spike) => {
+              spike.y -= 500;
+            });
+            coins.forEach((coin) => {
+              coin.y -= 500;
+            });
+          }
+        }
+      </script>
+    </div>
+    <!-- footer -->
+    <div class="music">
+      Contains music ©2023 Retro Indie Josh (https://retroindiejosh.itch.io)<br />
+      Licensed under Creative Commons Attribution 4.0 International
+      <div class="copyright">
+        <p>©copyright 2025 WadePlumb | All rights reserved.</p>
+      </div>
+    </div>
+  </body>
+</html>

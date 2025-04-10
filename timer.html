@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>timer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <audio
+      id="background-music"
+      src="timer-countdown-thinking-time-222283.mp3"
+      loop
+    ></audio>
+    <style>
+      body {
+        background-color: rgb(143, 205, 207);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .home {
+        height: 20px;
+      }
+      .timer-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border: ridge black 5px;
+        border-radius: 20px;
+        width: 500px;
+        margin: 50px;
+        background-color: rgb(219, 219, 219);
+      }
+      header {
+        padding-bottom: 10px;
+      }
+      .timer-merge {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100;
+      }
+      input {
+        width: 100px;
+        height: 50px;
+        margin-top: 20px;
+        font-family: sans-serif;
+        border-radius: 4px;
+        font-size: 40px;
+      }
+      #hello {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        font-size: 100px;
+        font-family: sans-serif;
+        text-decoration: underline;
+      }
+      button {
+        width: 130px;
+        font-family: sans-serif;
+        height: 30px;
+        margin: 20px;
+        border-radius: 5px;
+        color: black;
+      }
+      .button1 {
+        background-color: rgb(50, 177, 50);
+      }
+      .button2 {
+        background-color: rgb(199, 50, 16);
+      }
+      .button1:hover {
+        background-color: rgba(28, 97, 28, 0.859);
+      }
+      .button2:hover {
+        background-color: rgba(103, 28, 11, 0.805);
+      }
+      .load-bar-container {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        width: 1000px;
+        height: 50px;
+        border: solid;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      /* .load-bar {
+        width: 0px;
+        height: 50px;
+        background: repeating-linear-gradient(
+            170deg,
+            rgba(255, 0, 0, 1),
+            rgba(255, 0, 0, 1) 10px,
+            rgba(128, 0, 0, 1) 10px,
+            rgba(128, 0, 0, 1) 20px,
+            rgba(13, 100, 128, 0) 20px,
+            rgba(13, 100, 128, 0) 30px
+          ),
+          repeating-linear-gradient(
+            5deg,
+            rgb(13, 94, 153),
+            rgb(13, 94, 153) 10px,
+            rgba(13, 100, 128, 0.8) 10px,
+            rgba(13, 100, 128, 0.8) 20px
+          );
+        border-radius: 5px;
+      } */
+
+      .load-bar {
+        width: 0px;
+        height: 50px;
+        background: repeating-linear-gradient(
+            170deg,
+            rgba(90, 111, 103, 1),
+            rgba(90, 111, 103, 1) 10px,
+            rgba(55, 63, 60, 1) 10px,
+            rgba(55, 63, 60, 1) 20px,
+            rgba(13, 99, 128, 0) 20px,
+            rgba(13, 99, 128, 0) 30px
+          ),
+          repeating-linear-gradient(
+            5deg,
+            rgb(13, 94, 153),
+            rgb(13, 94, 153) 10px,
+            rgba(13, 100, 128, 0.8) 10px,
+            rgba(13, 100, 128, 0.8) 20px
+          );
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="home"><a href="index.html">Home</a></div>
+    <header class="minhead">
+      <div class="header">Timer</div>
+      <div class="header-explanation">the simple timing Tool</div>
+    </header>
+    <!-- left.toFixed(2) -->
+    <script>
+      var bar = 0;
+      var backgroundMusic = document.getElementById("background-music");
+      var goTime = false;
+      var min = 0;
+      var sec = 0;
+      var pausing = false;
+      function forever(time) {
+        var elm = document.getElementById("my_bar");
+        var timebar = time / 1000;
+        var id = setInterval(frame, timebar);
+        bar = 0;
+        function frame() {
+          if (bar >= 1000) {
+            clearInterval(id);
+          } else {
+            bar++;
+            elm.style.width = bar + "px";
+          }
+        }
+      }
+      function stop() {
+        backgroundMusic.pause();
+        backgroundMusic.currentTime = 0;
+        goTime = false;
+        pausing = true;
+        if (min === 0 && sec === 0) {
+          pausing = false;
+        }
+      }
+      function re() {
+        min = 0;
+        sec = 0;
+        pausing = false;
+        goTime = false;
+      }
+      function go() {
+        backgroundMusic.pause();
+        backgroundMusic.currentTime = 0;
+        if (goTime === false) {
+          goTime = true;
+          if (pausing === false) {
+            bar = 0;
+            min = document.getElementById("min").value || 0;
+            sec = document.getElementById("sec").value || 0;
+          }
+          pausing = false;
+          var time = (parseInt(min) * 60 + parseInt(sec)) * 1000; // Convert minutes and seconds to milliseconds
+          countdown();
+          forever(time);
+        }
+      }
+
+      function countdown() {
+        if (goTime === true) {
+          if (typeof min === "undefined") {
+            min = 0;
+          }
+          if (typeof sec === "undefined") {
+            sec = 0;
+          }
+          if (min > 0) {
+            if (sec <= 0) {
+              sec = 60;
+              min -= 1;
+            }
+          }
+          sec -= 1;
+          if (min <= 0 && sec <= 0) {
+            goTime = false;
+            backgroundMusic.play();
+            min = 0;
+            sec = 0;
+          }
+
+          if (sec < 10) {
+            document.getElementById("hello").innerText = min + ":" + "0" + sec;
+          } else {
+            document.getElementById("hello").innerText = min + ":" + sec;
+          }
+          setTimeout(countdown, 1000);
+        }
+      }
+    </script>
+    <div class="timer-box">
+      <div class="timer-merge">
+        <div class="input">
+          <input oninput="re()" type="text" id="min" placeholder="00" />
+          <input oninput="re()" type="text" id="sec" placeholder="00" />
+        </div>
+        <p id="hello">00.00</p>
+      </div>
+      <div class="button">
+        <button class="button1" onclick="go()">start</button>
+        <button class="button2" onclick="stop()">stop</button>
+      </div>
+    </div>
+    <div class="load-bar-container">
+      <div id="my_bar" class="load-bar"></div>
+    </div>
+  </body>
+</html>

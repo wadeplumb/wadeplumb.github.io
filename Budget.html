@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Buget</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="media-Quries.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+
+        <script src="https://kit.fontawesome.com/110868636c.js" 
+    crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.18/jspdf.plugin.autotable.min.js"></script>
+</head>
+        
+        <script>
+            var inputTotal = 0;
+            var inputTotal2 = 0;
+            var inputTotal3 = 0;
+            var inputTotal4 = 0; 
+
+            var inputValue3 = 0;
+            var inputValue2 = 0; 
+            var inputValue = 0;
+
+            function checkInputContents() {
+            var inputField = document.getElementById("income1");
+            inputValue = parseFloat(inputField.value) || 0;
+            var inputField2 = document.getElementById("income2");
+            inputValue2 = parseFloat(inputField2.value) || 0;
+            var inputField3 = document.getElementById("income3");
+            inputValue3 = parseFloat(inputField3.value) || 0;
+            inputTotal = inputValue3 + inputValue2 + inputValue;
+            
+            document.getElementById("display").innerText = "Total: $" + inputTotal.toFixed(2);
+            Total();
+            TotalIncome();
+            goodBad();
+            getName();
+            button();
+        }
+
+        var input2Value = 0; 
+        var input2Value2 = 0;
+
+        function checkGivingInputContents() {
+            var inputField = document.getElementById("giving1");
+            input2Value = parseFloat(inputField.value) || 0;
+            var inputField2 = document.getElementById("giving2");
+            input2Value2 = parseFloat(inputField2.value) || 0;
+            inputTotal2 = input2Value + input2Value2;
+            
+            document.getElementById("display2").innerText = "Total: $" + inputTotal2.toFixed(2);
+            Total();
+            goodBad();
+            getName();
+            button();
+        }
+
+
+        var input3Value4  = 0; 
+        var input3Value3 = 0; 
+        var input3Value2 = 0; 
+        var input3Value = 0;
+        function checksavingInputContents() {
+            var inputField = document.getElementById("saving1");
+            input3Value = parseFloat(inputField.value) || 0;
+            var inputField2 = document.getElementById("saving2");
+            input3Value2 = parseFloat(inputField2.value) || 0;
+            var inputField3 = document.getElementById("saving3");
+            input3Value3 = parseFloat(inputField3.value) || 0;
+            var inputField4 = document.getElementById("saving4");
+            input3Value4 = parseFloat(inputField4.value) || 0;
+            inputTotal3 = input3Value4 + input3Value3 + input3Value2 + input3Value;
+            
+            document.getElementById("display3").innerText = "Total: $" + inputTotal3.toFixed(2);
+            Total();
+            goodBad();
+            getName();
+            button();
+        }
+
+
+        var input4Value8  = 0; 
+        var input4Value7 = 0; 
+        var input4Value6 = 0; 
+        var input4Value5 = 0; 
+        var input4Value4 = 0; 
+        var input4Value3 = 0; 
+        var input4Value2 = 0; 
+        var input4Value = 0;
+        function checkspendingInputContents() {
+            var inputField = document.getElementById("spending1");
+            input4Value = parseFloat(inputField.value) || 0;
+            var inputField2 = document.getElementById("spending2");
+            input4Value2 = parseFloat(inputField2.value) || 0;
+            var inputField3 = document.getElementById("spending3");
+            input4Value3 = parseFloat(inputField3.value) || 0;
+            var inputField4 = document.getElementById("spending4");
+            input4Value4 = parseFloat(inputField4.value) || 0;
+            var inputField5 = document.getElementById("spending5");
+            input4Value5 = parseFloat(inputField5.value) || 0;
+            var inputField6 = document.getElementById("spending6");
+            input4Value6 = parseFloat(inputField6.value) || 0;
+            var inputField7 = document.getElementById("spending7");
+            input4Value7 = parseFloat(inputField7.value) || 0;
+            var inputField8 = document.getElementById("spending8");
+            input4Value8 = parseFloat(inputField8.value) || 0;
+            inputTotal4 = input4Value8 + input4Value7 + input4Value6 + input4Value5 + input4Value4 + input4Value3 + input4Value2 + input4Value;
+            
+            document.getElementById("display4").innerText = "Total: $" + inputTotal4.toFixed(2);
+            Total();
+            goodBad();
+            getName();
+            button();
+        }
+
+        function TotalIncome() {
+            var grandTotal = inputTotal;
+            document.getElementById("display6").innerText = "/$" + grandTotal.toFixed(2);
+        }
+
+        function Total() {
+            var grandTotal = inputTotal2 + inputTotal3 + inputTotal4;
+            document.getElementById("display5").innerText = "$" + grandTotal.toFixed(2);
+        }
+
+        function goodBad(){
+            var left = inputTotal - (inputTotal2 + inputTotal3 + inputTotal4);
+            if(inputTotal === inputTotal2 + inputTotal3 + inputTotal4){
+                document.getElementById("display7").innerText = "Great Job!"; 
+                document.getElementById("display5").style = "color: green;"; 
+                document.getElementById("display6").style = "color: green;"; 
+            }
+            else if(inputTotal > inputTotal2 + inputTotal3 + inputTotal4){
+                document.getElementById("display7").innerText = "You have more to spend"; 
+                document.getElementById("display5").style = "color: black;"; 
+                document.getElementById("display6").style = "color: black;"; 
+            }
+            else if(inputTotal < inputTotal2 + inputTotal3 + inputTotal4){
+                document.getElementById("display7").innerText = "You need to cut your spending"; 
+                document.getElementById("display5").style = "color: red;"; 
+                document.getElementById("display6").style = "color: red;"; 
+                
+            }
+            document.getElementById("display8").innerText = "left to budget: $" + left.toFixed(2);
+            
+        }
+
+        var incomeName1 = 0;
+        var incomeName2 = 0;
+        var incomeName3 = 0;
+
+        var givingName1 = 0;
+        var givingName2 = 0;
+
+        var savingName1 = 0;
+        var savingName2 = 0;
+        var savingName3 = 0;
+        var savingName4 = 0;
+
+        var spendingName1 = 0;
+        var spendingName2 = 0;
+        var spendingName3 = 0;
+        var spendingName4 = 0;
+        var spendingName5 = 0;
+        var spendingName6 = 0;
+        var spendingName7 = 0;
+        var spendingName8 = 0;
+
+        function getName(){
+            incomeName1 = document.getElementById("incomeName1").value;
+            incomeName2 = document.getElementById("incomeName2").value;
+            incomeName3 = document.getElementById("incomeName3").value;
+
+            givingName1 = document.getElementById("givingName1").value;
+            givingName2 = document.getElementById("givingName2").value;
+
+            savingName1 = document.getElementById("savingName1").value;
+            savingName2 = document.getElementById("savingName2").value;
+            savingName3 = document.getElementById("savingName3").value;
+            savingName4 = document.getElementById("savingName4").value;
+
+            spendingName1 = document.getElementById("spendingName1").value;
+            spendingName2 = document.getElementById("spendingName2").value;
+            spendingName3 = document.getElementById("spendingName3").value;
+            spendingName4 = document.getElementById("spendingName4").value;
+            spendingName5 = document.getElementById("spendingName5").value;
+            spendingName6 = document.getElementById("spendingName6").value;
+            spendingName7 = document.getElementById("spendingName7").value;
+            spendingName8 = document.getElementById("spendingName8").value;
+        }
+        function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            doc.text("Budget, the simple budgeting tool", 60, 10);
+            doc.autoTable({
+            head: [['Income', '$', 'Giving', '$', 'Saving' , '$', 'Spending', '$']],
+            body: [
+            [incomeName1,'$' + inputValue,givingName1,'$' + input2Value,savingName1,'$' + input3Value,spendingName1,'$' + input4Value],
+            [incomeName2,'$' + inputValue2,givingName2,'$' + input2Value2,savingName2,'$' + input3Value2,spendingName2,'$' + input4Value2],
+            [incomeName3,'$' + inputValue3,,,savingName3,'$' + input3Value3,spendingName3,'$' + input4Value3],
+            [,,,,savingName4,'$' + input3Value4,spendingName4,'$' + input4Value4],
+            [,,,,,,spendingName5,'$' + input4Value5],
+            [,,,,,,spendingName6,'$' + input4Value6],
+            [,,,,,,spendingName7,'$' + input4Value7],
+            [,,,,,,spendingName8,'$' + input4Value8],
+            ['Total income:','$' + inputTotal,'Total giving:','$' + inputTotal2,'Total saving:','$' + inputTotal3,'Total spending:','$' + inputTotal4]
+            ],
+            
+            headStyles: { fillColor: [13, 13, 77] }
+            });
+            doc.save("Budget.pdf");
+        }
+       function button(){
+        if(inputTotal === inputTotal2 + inputTotal3 + inputTotal4){
+            document.getElementById("button1").style.backgroundColor= "rgb(83, 162, 4)";
+            document.getElementById("button1").style.color= "white";
+            document.getElementById("button1").style.border= "black";
+        }
+        if(inputTotal !== inputTotal2 + inputTotal3 + inputTotal4){
+            document.getElementById("button1").style.backgroundColor= "transparent";
+            document.getElementById("button1").style.color= "transparent";
+            document.getElementById("button1").style.border= "transparent";
+        }
+       } 
+     </script>
+    </head>
+    <body>
+        <div class="home"><a href="index.html">Home</a></div>
+        <header class="minhead">
+            <div class="header"> Budget <i class="fa-solid fa-book" style="color: #FFD43B;"></i></div>
+            <div class="header-explanation">the simple budgeting Tool</div>
+        </header>
+
+        <div class="buget-inputs">
+            <p>Income</p>
+            <div class="income1">
+                <input type="text" id="incomeName1" placeholder="income"/>
+                <input type="text" id="income1" placeholder="$0" oninput="checkInputContents()"/>
+            </div>
+            <div class="income2">
+                <input type="text" id="incomeName2" placeholder="income"/>
+                <input type="text" id="income2" placeholder="$0" oninput="checkInputContents()"/>
+            </div>
+            <div class="income3">
+                <input type="text" id="incomeName3" placeholder="income"/>
+                <input type="text" id="income3" placeholder="$0" oninput="checkInputContents()"/>
+            </div>
+            <p id="display">Total: $00.00</p>
+
+            <p>Giving</p>
+            <div class="giving1">
+                <input type="text" id="givingName1" placeholder="giving"/>
+                <input type="text" id="giving1" placeholder="$0" oninput="checkGivingInputContents()"/>
+            </div>
+            <div class="giving2">
+                <input type="text" id="givingName2" placeholder="giving"/>
+                <input type="text" id="giving2" placeholder="$0" oninput="checkGivingInputContents()"/>
+            </div>
+            <p id="display2">Total: $00.00</p>
+
+                <p>Saving</p>
+            <div class="saving1">
+                <input type="text" id="savingName1" placeholder="saving"/>
+                <input type="text" id="saving1" placeholder="$0" oninput="checksavingInputContents()"/>
+            </div>
+            <div class="saving2">
+                <input type="text" id="savingName2" placeholder="saving"/>
+                <input type="text" id="saving2" placeholder="$0" oninput="checksavingInputContents()"/>
+            </div>
+            <div class="saving3">
+                <input type="text" id="savingName3" placeholder="saving"/>
+                <input type="text" id="saving3" placeholder="$0" oninput="checksavingInputContents()"/>
+            </div>
+            <div class="saving4">
+                <input type="text" id="savingName4" placeholder="saving"/>
+                <input type="text" id="saving4" placeholder="$0" oninput="checksavingInputContents()"/>
+            </div>
+            <p id="display3">Total: $00.00</p>
+
+            <p>Spending</p>
+            <div class="spending1">
+                <input type="text" id="spendingName1" placeholder="spending"/>
+                <input type="text" id="spending1" placeholder="$0" oninput="checkspendingInputContents()"/>
+            </div>
+            <div class="spending2">
+                <input type="text" id="spendingName2" placeholder="spending"/>
+                <input type="text" id="spending2" placeholder="$0" oninput="checkspendingInputContents()"/>
+            </div>
+            <div class="spending3">
+                <input type="text" id="spendingName3" placeholder="spending"/>
+                <input type="text" id="spending3" placeholder="$0" oninput="checkspendingInputContents()"/>
+            </div>
+            <div class="spending4">
+                <input type="text" id="spendingName4" placeholder="spending"/>
+                <input type="text" id="spending4" placeholder="$0" oninput="checkspendingInputContents()"/>
+            </div>
+            <div class="spending5">
+                <input type="text" id="spendingName5" placeholder="spending"/>
+                <input type="text" id="spending5" placeholder="$0" oninput="checkspendingInputContents()"/>
+            </div>
+            <div class="spending6">
+                <input type="text" id="spendingName6" placeholder="spending"/>
+                <input type="text" id="spending6" placeholder="$0" oninput="checkspendingInputContents()"/>
+            </div>
+            <div class="spending7">
+                <input type="text" id="spendingName7" placeholder="spending"/>
+                <input type="text" id="spending7" placeholder="$0" oninput="checkspendingInputContents()"/>
+            </div>
+            <div class="spending8">
+                <input type="text" id="spendingName8" placeholder="spending"/>
+                <input type="text" id="spending8" placeholder="$0" oninput="checkspendingInputContents()"/>
+            </div>
+            <p id="display4">Total: $00.00</p>
+        </div>
+
+        <div class = final>
+            <p id="display5"> $00.00</p>
+            <p id="display6"> /$00.00</p>
+        </div>
+
+
+        <div class = "bujet-checker-notifyer">
+            <p style="margin: 0%;" class = "bujet-checker-notifyer-item" id = "display8">left to budget: $00.00</p>
+            <p class = "bujet-checker-notifyer-item" id = "display7">Enter your income to get started</p>
+
+        </div>
+        <div class="button">
+            <button id="button1" onclick="generatePDF()">Generate PDF</button>
+        </div>
+        <div class="copyright"><p>©2025 WadePlumb | ©copyright</p></div>
+    </body>
+</html>
