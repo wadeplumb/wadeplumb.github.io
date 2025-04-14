@@ -22,7 +22,7 @@ a .budget-header {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   place-items: center;
-  background-image: url(images/dmitriy-demidov-iuuJC_pjLU0-unsplash.jpg);
+  background-image: url(../images/dmitriy-demidov-iuuJC_pjLU0-unsplash.jpg);
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;

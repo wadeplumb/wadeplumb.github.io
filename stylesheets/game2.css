@@ -46,6 +46,6 @@ script {
 }
 @font-face {
   font-family: "Sixtyfour Convergence";
-  src: url("fonts/SixtyfourConvergence-Regular-VariableFont_BLED\,SCAN\,XELA\,YELA.ttf")
+  src: url("../fonts/SixtyfourConvergence-Regular-VariableFont_BLED\,SCAN\,XELA\,YELA.ttf")
     format("truetype");
 }
