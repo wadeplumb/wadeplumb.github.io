@@ -46,6 +46,7 @@
       function preload() {
         resetSound();
       }
+      // stupedly confusing var names
       var col = 255;
       var p = 0;
       var x = 40;
@@ -62,6 +63,7 @@
       var go1 = 0;
       var go2 = 0;
 
+      // set up the canvas and randomize the location of the multi-colored square
       function setup() {
         createCanvas(800, 800);
         d = random(0, 760);
@@ -70,11 +72,13 @@
         q = f;
       }
 
+      // draw the square
       function car(x, y,R,G,B) {
         fill(R, G, B);
         rect(x, y, 40, 40);
       }
 
+      // draw the multi-colored square
       function cor(x, y, c, o) {
         fill(c, o, o);
         rect(x, y, 40, 40);
@@ -84,6 +88,7 @@
         rect(x + 10, y + 10, 20, 20);
       }
 
+      // game over screen
       function PLAY() {
         fill(247, 244, 244);
         // textSize(20);
@@ -92,8 +97,9 @@
         triangle(170 + 200, 280 - 20, 230 + 200, 300 - 20, 170 + 200, 330 - 20);
       }
 
+      // main draw loop
       function draw() {
-        // background(235, 221, 221);
+        // update nessesary variables
         background(0, 100, 150);
         AAA = dist(mouseX, mouseY, 400, 300);
         col = AAA <= 30 ? 138 : 255;
@@ -103,6 +109,7 @@
         dist2 = dist(d + 20, f + 20, x2 + 20, y2 + 20);
         textSize(20);
 
+        // detect key presses and move the square accordingly
         if (keyIsPressed) {
           if ( key === "w") T = 4;
           if ( key === "s") T = 3;
@@ -138,6 +145,7 @@
           if (dir === 4) y2 -= s;
         }
 
+        // draw the squares and the multi-colored square
         cor(d, f, x, y);
         car(x, y,255,0,0);
         car(x2,y2,0,255,0)
