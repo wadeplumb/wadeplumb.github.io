@@ -3,24 +3,43 @@
     width: 130px;
   }
   .header {
-    font-size: 90px;
+    font-size: 65px;
+  }
+  .header2 {
+    font-size: 110px;
   }
 
   .header-explanation {
     font-size: 20px;
   }
+  .header-explanation2 {
+    font-size: 30px;
+  }
   .link-grid {
     grid-template-columns: 1fr 1fr;
   }
+  .load-bar-container {
+    width: 600px;
+  }
 }
+
 @media (max-width: 700px) {
   .header {
-    font-size: 75px;
+    font-size: 50px;
+  }
+  .header2 {
+    font-size: 65px;
   }
   .header-explanation {
     font-size: 15px;
   }
+  .header-explanation2 {
+    font-size: 20px;
+  }
   .link-grid {
     grid-template-columns: 1fr;
+  }
+  .load-bar-container {
+    width: 300px;
   }
 }
