@@ -1,10 +1,11 @@
-@media (max-width: 615px) {
+@media (max-width: 1050px) {
   input {
     width: 130px;
   }
   .header {
     font-size: 90px;
   }
+
   .header-explanation {
     font-size: 20px;
   }
@@ -12,7 +13,7 @@
     grid-template-columns: 1fr 1fr;
   }
 }
-@media (max-width: 380px) {
+@media (max-width: 700px) {
   .header {
     font-size: 75px;
   }
