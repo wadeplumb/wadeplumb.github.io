@@ -4,11 +4,12 @@
     <meta charset="utf-8" />
     <title>hompage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="images/icon.png" />
 
     <link rel="stylesheet" href="stylesheets/styles.css" />
+    <link rel="stylesheet" href="stylesheets/contact.css" />
     <link rel="stylesheet" href="stylesheets/main-styles.css" />
     <link rel="stylesheet" href="stylesheets\media-Quries.css" />
-    <link rel="icon" type="image/png" href="images/icon.png" />
 
     <script
       src="https://kit.fontawesome.com/110868636c.js"
@@ -38,47 +39,41 @@
     </nav>
     <!-- header -->
     <header>
-      <div class="header2">Tools</div>
+      <div class="header2">Contact</div>
       <div class="header-explanation2"><><><><><><><><><><><></div>
     </header>
     <!-- 40px of space between header and grid -->
     <div class="spacerx40"></div>
 
-    <!-- grid of links to services -->
-    <div class="link-grid">
-      <a class="link" href="timer.html">
-        <div class="budget-header">Timer</div>
-        <div class="budget-header-explanation">a simple timer</div>
-        <img
-          src="images/Screenshot 2025-03-11 174130.png"
-          alt="image"
-          width="200"
-        />
-      </a>
-      <a class="link" href="Budget.html">
-        <div class="budget-header">
-          Budget <i class="fa-solid fa-book" style="color: #ffd43b"></i>
-        </div>
-        <div class="budget-header-explanation">the simple budgeting Tool</div>
-        <img
-          src="images/Screenshot 2025-02-14 122357.png"
-          alt="image"
-          width="200"
-        />
-      </a>
-      <a class="link" href="index.html">
-        <div class="budget-header">COMING SOON!</div>
-        <div class="budget-header-explanation">--------------</div>
-        <img src="images/image.png" alt="image" width="200" />
-      </a>
-    </div>
-    <!-- add more space with background coloring -->
-    <div class="spacerx40dif2"></div>
-    <div class="spacerx40dif">
-      <!-- copyright -->
-      <div class="copyright">
-        <p>©copyright 2025 WadePlumb | All rights reserved.</p>
-      </div>
-    </div>
+    <form action="https://api.web3forms.com/submit" method="POST">
+      <!-- Replace with your Access Key -->
+      <input
+        type="hidden"
+        name="access_key"
+        value="63640f00-f2bc-431b-a241-6717662a08ac"
+      />
+
+      <!-- Form Inputs. Each input must have a name="" attribute -->
+      <input placeholder="Name" type="text" name="name" required />
+      <input placeholder="Email" type="email" name="email" required />
+      <textarea
+        placeholder="Report problem/suggestons/link to wanted adition"
+        name="message"
+        required
+      ></textarea>
+
+      <!-- Honeypot Spam Protection -->
+      <input
+        type="checkbox"
+        name="botcheck"
+        class="hidden"
+        style="display: none"
+      />
+
+      <!-- Custom Confirmation / Success Page -->
+      <!-- <input type="hidden" name="redirect" value="https://mywebsite.com/thanks.html"> -->
+
+      <button type="submit">Submit Form</button>
+    </form>
   </body>
 </html>
