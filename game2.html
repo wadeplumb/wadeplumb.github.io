@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- import exteral styles -->
+    <!-- import external styles -->
     <link rel="stylesheet" href="stylesheets/styles.css" />
     <!-- <link rel="stylesheet" href="main-styles.css" /> -->
     <link rel="stylesheet" href="stylesheets/game2.css" />
     <link rel="stylesheet" href="stylesheets/main-styles.css" />
     <!-- <link rel="script" href="game2.js" /> -->
 
-    <!-- set up html veiw -->
+    <!-- set up html view -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Car Game</title>
     <link rel="icon" type="image/png" href="images/icon.png" />
-    <!-- import p5.js librairy -->
+    <!-- import p5.js library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   </head>
   <body>
@@ -220,7 +220,7 @@
             height: 20,
           },
         ];
-        // set initlal spikespeed
+        // set initial spikespeed
         var spikspeed = 3;
 
         // create car object
@@ -230,7 +230,7 @@
           top: 550,
           bottom: 316 + 200 + 100 + 50,
         };
-        // set initial vareables
+        // set initial variables
         var direction = 0;
         var AAA = dist(mouseX, mouseY, 400, 300);
         var play1 = 0;
@@ -294,7 +294,7 @@
           if (direction === 2 && x > 0) {
             x -= 7;
           }
-          // reseting cars left and right
+          // resetting cars left and right
           car.left = x - 5;
           car.right = x + 60;
 
@@ -328,7 +328,7 @@
                 spike.x + spike.width / 2 - 7 >= car.left + 87 &&
                 spike.x - spike.width * 2 <= car.right + 81
               ) {
-                // if colition hapens
+                // if colition happens
                 console.log(
                   "collision",
                   car.left,
@@ -341,7 +341,7 @@
                 x = -400;
               }
             }
-            //Draw spikes at spicific X and Y points
+            //Draw spikes at specific X and Y points
             createSpike(spike.x, spike.y);
           });
           coins.forEach((coin) => {
