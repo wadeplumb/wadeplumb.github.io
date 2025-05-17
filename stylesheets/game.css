@@ -9,6 +9,7 @@ header {
   width: 100vw;
   /* padding: 20px; */
   margin-bottom: 20px;
+  padding-top: 100px;
 }
 .home {
   height: 20px;
@@ -19,18 +20,23 @@ header {
 body {
   font-family: sans-serif;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
   /* height: 100vh; */
   margin: 0;
   flex-direction: column;
-  background-color: rgb(92, 92, 92);
+  /* background-color: rgb(92, 92, 92); */
   overflow-x: hidden;
   overflow-y: scroll;
 }
+canvas {
+  display: block;
+  margin: auto;
+}
+
 .music {
   order: 3;
-  background-color: rgb(13, 13, 77);
+  background-color: #1d1d1d;
   color: white;
   width: 100vw;
   display: flex;

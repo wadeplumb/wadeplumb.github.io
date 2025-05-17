@@ -14,6 +14,27 @@
       src="https://kit.fontawesome.com/110868636c.js"
       crossorigin="anonymous"
     ></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const prefersDarkScheme = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        );
+        const prefersLightScheme = window.matchMedia(
+          "(prefers-color-scheme: light)"
+        );
+        const icon = document.getElementById("theme-icon");
+
+        // Set initial mode based on saved theme or system preference
+        if (prefersDarkScheme.matches) {
+          icon.classList.remove("fa-moon");
+          icon.classList.add("fa-sun");
+        }
+        if (prefersLightScheme.matches) {
+          icon.classList.remove("fa-sun");
+          icon.classList.add("fa-moon");
+        }
+      });
+    </script>
     <!-- :) -->
   </head>
   <body>
@@ -29,6 +50,9 @@
         /></a>
         <div class="nav-title">Simple Tools</div>
         <div class="nav-spacer"></div>
+        <button class="toggle-button" onclick="toggle()">
+          <i id="theme-icon" class="fa-solid fa-sun"></i>
+        </button>
         <a href="index.html" class="nav-link">Home</a>
         <a href="tools.html" class="nav-link">Tools</a>
         <a href="games.html" class="nav-link">Games</a>
@@ -36,6 +60,22 @@
         <a href="contact.html" class="nav-link">Contact</a>
       </div>
     </nav>
+    <script>
+      function toggle() {
+        const current = document.documentElement.style.colorScheme;
+        document.documentElement.style.colorScheme =
+          current === "dark" ? "light" : "dark";
+
+        const icon = document.getElementById("theme-icon");
+        if (document.documentElement.style.colorScheme === "dark") {
+          icon.classList.remove("fa-moon");
+          icon.classList.add("fa-sun");
+        } else {
+          icon.classList.remove("fa-sun");
+          icon.classList.add("fa-moon");
+        }
+      }
+    </script>
     <!-- header -->
     <header>
       <div class="header2">Simple Tools</div>

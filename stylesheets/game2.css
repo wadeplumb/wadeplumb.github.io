@@ -1,8 +1,8 @@
 body {
   font-family: "Sixtyfour Convergence";
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
   /* height: 100vh; */
   margin: 0;
   flex-direction: column;
@@ -13,13 +13,10 @@ body {
 canvas {
   border: 1px solid #ccc;
 }
-.home {
-  height: 20px;
-  padding-left: 40px;
-}
+
 .music {
   order: 3;
-  background-color: rgb(13, 13, 77);
+  background-color: #1d1d1d;
   color: white;
   width: 100vw;
   display: flex;
@@ -28,14 +25,11 @@ canvas {
   padding: 10px;
   flex-direction: column;
 }
-header {
-  /* position: relative; */
-  /* order: 0; */
-  /* height: 200px; */
-  width: 100vw;
-  /* padding: 20px; */
-  margin-bottom: 20px;
+canvas {
+  display: block;
+  margin: auto;
 }
+
 .game {
   position: relative;
   margin: 20px;
@@ -43,6 +37,9 @@ header {
 }
 script {
   position: relative;
+}
+header {
+  padding-top: 120px;
 }
 @font-face {
   font-family: "Sixtyfour Convergence";
