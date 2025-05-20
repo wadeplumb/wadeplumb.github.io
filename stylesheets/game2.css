@@ -6,7 +6,6 @@ body {
   /* height: 100vh; */
   margin: 0;
   flex-direction: column;
-  background-color: rgb(8, 8, 8);
   overflow-x: hidden;
   /* overflow-y: scroll; */
 }
@@ -16,7 +15,7 @@ canvas {
 
 .music {
   order: 3;
-  background-color: #1d1d1d;
+  background-color: light-dark(rgb(13, 13, 77), #1d1d1d);
   color: white;
   width: 100vw;
   display: flex;
@@ -24,6 +23,7 @@ canvas {
   align-items: center;
   padding: 10px;
   flex-direction: column;
+  margin-top: 30px;
 }
 canvas {
   display: block;
@@ -38,9 +38,7 @@ canvas {
 script {
   position: relative;
 }
-header {
-  padding-top: 120px;
-}
+
 @font-face {
   font-family: "Sixtyfour Convergence";
   src: url("../fonts/SixtyfourConvergence-Regular-VariableFont_BLED\,SCAN\,XELA\,YELA.ttf")

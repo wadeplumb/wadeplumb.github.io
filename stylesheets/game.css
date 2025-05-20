@@ -9,7 +9,6 @@ header {
   width: 100vw;
   /* padding: 20px; */
   margin-bottom: 20px;
-  padding-top: 100px;
 }
 .home {
   height: 20px;
@@ -36,7 +35,7 @@ canvas {
 
 .music {
   order: 3;
-  background-color: #1d1d1d;
+  background-color: light-dark(rgb(13, 13, 77), #1d1d1d);
   color: white;
   width: 100vw;
   display: flex;
@@ -44,6 +43,7 @@ canvas {
   align-items: center;
   padding: 10px;
   flex-direction: column;
+  margin-top: 30px;
 }
 canvas {
   border: 1px solid #ccc;
