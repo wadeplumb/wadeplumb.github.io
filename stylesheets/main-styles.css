@@ -23,6 +23,7 @@
   justify-content: center;
   align-items: center;
   background-color: light-dark(rgb(15, 201, 207), rgb(53, 53, 56));
+  transition: background-color 1s cubic-bezier(0.99, 0.04, 0.36, 0.63);
   width: 100vw;
   padding-top: 20px;
   padding-bottom: 10px;
@@ -31,6 +32,7 @@
 
 .nav-bar a {
   color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));
+  transition: color 1s;
   height: 30px;
   width: 50px;
   text-decoration: none;
@@ -51,6 +53,7 @@
 
 .nav-bar button {
   color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));
+  transition: color 1s;
   height: 30px;
   width: 50px;
   text-decoration: none;
@@ -71,6 +74,7 @@
 
 .nav-title {
   color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));
+  transition: color 1s;
   font-family: sans-serif;
   font-size: 30px;
   margin-left: 20px;
