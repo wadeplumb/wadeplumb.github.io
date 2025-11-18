@@ -141,7 +141,7 @@
                 document.getElementById("display6").style = "color: green;"; 
             }
             else if(inputTotal > inputTotal2 + inputTotal3 + inputTotal4){
-                document.getElementById("display7").innerText = "You have more to spend"; 
+                document.getElementById("display7").innerText = "You have more to Budget"; 
                 document.getElementById("display5").style = "color: black;"; 
                 document.getElementById("display6").style = "color: black;"; 
             }
@@ -202,23 +202,61 @@
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             doc.text("Budget, the simple budgeting tool", 60, 10);
-            doc.autoTable({
-            head: [['Income', '$', 'Giving', '$', 'Saving' , '$', 'Spending', '$']],
-            body: [
-            [incomeName1,'$' + inputValue,givingName1,'$' + input2Value,savingName1,'$' + input3Value,spendingName1,'$' + input4Value],
-            [incomeName2,'$' + inputValue2,givingName2,'$' + input2Value2,savingName2,'$' + input3Value2,spendingName2,'$' + input4Value2],
-            [incomeName3,'$' + inputValue3,,,savingName3,'$' + input3Value3,spendingName3,'$' + input4Value3],
-            [,,,,savingName4,'$' + input3Value4,spendingName4,'$' + input4Value4],
-            [,,,,,,spendingName5,'$' + input4Value5],
-            [,,,,,,spendingName6,'$' + input4Value6],
-            [,,,,,,spendingName7,'$' + input4Value7],
-            [,,,,,,spendingName8,'$' + input4Value8],
-            ['Total income:','$' + inputTotal,'Total giving:','$' + inputTotal2,'Total saving:','$' + inputTotal3,'Total spending:','$' + inputTotal4]
-            ],
-            
-            headStyles: { fillColor: [13, 13, 77] }
-            });
-            doc.save("Budget.pdf");
+doc.autoTable({
+head: [['Income', '$', 'Giving', '$', 'Saving' , '$', 'Spending', '$']],
+body: [
+[incomeName1,'$' + inputValue,givingName1,'$' + input2Value,savingName1,'$' + input3Value,spendingName1,'$' + input4Value],
+[incomeName2,'$' + inputValue2,givingName2,'$' + input2Value2,savingName2,'$' + input3Value2,spendingName2,'$' + input4Value2],
+[incomeName3,'$' + inputValue3,,,savingName3,'$' + input3Value3,spendingName3,'$' + input4Value3],
+[,,,,savingName4,'$' + input3Value4,spendingName4,'$' + input4Value4],
+[,,,,,,spendingName5,'$' + input4Value5],
+[,,,,,,spendingName6,'$' + input4Value6],
+[,,,,,,spendingName7,'$' + input4Value7],
+[,,,,,,spendingName8,'$' + input4Value8],
+['Total income:','$' + inputTotal,'Total giving:','$' + inputTotal2,'Total saving:','$' + inputTotal3,'Total spending:','$' + inputTotal4]
+],
+
+didParseCell: function (data) {
+    if (data.column.index === 0 || data.column.index === 1  && data.section !== 'head') {
+        if (data.row.index % 2 === 0 && data.section !== 'head') {
+        data.cell.styles.fillColor = [205, 255, 233-20]; // Bright green
+    } else if (data.row.index % 2 === 1 && data.section !== 'head') {
+        data.cell.styles.fillColor = [164, 255, 215-20]; // Darker green
+    }
+    }
+},
+headStyles: { fillColor: [13, 13, 77] }
+});
+    doc.text("Balance sheet", 100, 100);
+
+    doc.autoTable({
+head: [['Income', '$', 'Giving', '$', 'Saving' , '$', 'Spending', '$']],
+body: [
+[incomeName1,'$' + inputValue,givingName1,'$' + input2Value,savingName1,'$' + input3Value,spendingName1,'$' + input4Value],
+[incomeName2,'$' + inputValue2,givingName2,'$' + input2Value2,savingName2,'$' + input3Value2,spendingName2,'$' + input4Value2],
+[incomeName3,'$' + inputValue3,,,savingName3,'$' + input3Value3,spendingName3,'$' + input4Value3],
+[,,,,savingName4,'$' + input3Value4,spendingName4,'$' + input4Value4],
+[,,,,,,spendingName5,'$' + input4Value5],
+[,,,,,,spendingName6,'$' + input4Value6],
+[,,,,,,spendingName7,'$' + input4Value7],
+[,,,,,,spendingName8,'$' + input4Value8],
+['Total income:','$' + inputTotal,'Total giving:','$' + inputTotal2,'Total saving:','$' + inputTotal3,'Total spending:','$' + inputTotal4]
+],
+
+didParseCell: function (data) {
+    if (data.column.index === 0 || data.column.index === 1  && data.section !== 'head') {
+        if (data.row.index % 2 === 0 && data.section !== 'head') {
+        data.cell.styles.fillColor = [205, 255, 233-20]; // Bright green
+    } else if (data.row.index % 2 === 1 && data.section !== 'head') {
+        data.cell.styles.fillColor = [164, 255, 215-20]; // Darker green
+    }
+    }
+},
+headStyles: { fillColor: [13, 13, 77] }
+});
+
+
+doc.save("Budget.pdf");
         }
        function button(){
         if(inputTotal === inputTotal2 + inputTotal3 + inputTotal4){
